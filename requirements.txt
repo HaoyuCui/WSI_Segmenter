@@ -1,0 +1,7 @@
+torch
+torchvision
+numpy
+visdom
+argparse
+tqdm
+opencv-python
