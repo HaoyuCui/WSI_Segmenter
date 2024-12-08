@@ -10,7 +10,7 @@
 
 Please make sure you have made the annotation in the QuPath and specified your own parameters in the script.
 
-![QuPath annotation](eg/.src/qupath.png)
+![QuPath annotation](eg/.src/QuPath.png)
 
 3. after running the step, you now have the following folder structure:
 ```
