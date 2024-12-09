@@ -1,4 +1,4 @@
-# WSI Patcher
+# WSI Segmenter
 
 > A simple tool for tile-level tumor-area segmentation or ROI segmentation. Works with QuPath (Version >= 0.4.2).
 > The model utilizes the [DeepLabV3](https://arxiv.org/abs/1706.05587) architecture with a pretrained ResNet backbone.
