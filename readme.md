@@ -9,7 +9,7 @@
 
 2. run `make_tile_mask_pairs.groovy` in QuPath to generate tile-mask pairs. See also [image.sc](https://forum.image.sc/t/exporting-annotations-as-rgb-image-tiles-or-cut-out-annotations-not-binary/77691)
 
-Please make sure you have made the annotation in the QuPath and specified your own parameters in the script.
+Please ensure you have made the annotation in the QuPath and specified your parameters in the script.
 
 ![QuPath annotation](eg/.src/QuPath.png)
 
@@ -47,7 +47,7 @@ python -m visdom.server
 ```
 
 ```bash
-python train.py --data_dir /PATH/TO/DATA --epochs 20 -v
+python train.py --data_dir /PATH/TO/DATA --epochs 20
 ```
 
 The prediction (up) and ground truth (down) will be shown and refreshed in the visdom server.
