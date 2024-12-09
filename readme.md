@@ -1,12 +1,13 @@
 # WSI Patcher
 
-> A simple tool for tile-level tumor-area segmentation or ROI segmentation. Works with QuPath.
+> A simple tool for tile-level tumor-area segmentation or ROI segmentation. Works with QuPath (Version >= 0.4.2).
+> The model utilizes the [DeepLabV3](https://arxiv.org/abs/1706.05587) architecture with a pretrained ResNet backbone.
 
 ## Usage
 
 1. run `pip install -r requirements.txt` for installing dependencies.
 
-2. run 'make_tile_mask_pairs.groovy' in QuPath to generate tile-mask pairs. See also [image.sc](https://forum.image.sc/t/exporting-annotations-as-rgb-image-tiles-or-cut-out-annotations-not-binary/77691)
+2. run `make_tile_mask_pairs.groovy` in QuPath to generate tile-mask pairs. See also [image.sc](https://forum.image.sc/t/exporting-annotations-as-rgb-image-tiles-or-cut-out-annotations-not-binary/77691)
 
 Please make sure you have made the annotation in the QuPath and specified your own parameters in the script.
 
@@ -35,10 +36,10 @@ Suffix:
 - `jpeg` for tile
 - `png` for mask
 
-|                tile-mask pair a                |            tile-mask pair b             |            tile-mask pair c             |
-|:----------------------------------------------:|:---------------------------------------:|:---------------------------------------:|
+|            tile-mask pair a             |            tile-mask pair b             |            tile-mask pair c             |
+|:---------------------------------------:|:---------------------------------------:|:---------------------------------------:|
 | ![tile-mask 1](eg/slide_1/patch_1.jpeg) | ![tile-mask 2](eg/slide_1/patch_2.jpeg) | ![tile-mask 3](eg/slide_1/patch_3.jpeg) |
-|     ![tile-mask 1](eg/slide_1/patch_1.png)     | ![tile-mask 2](eg/slide_1/patch_2.png)  | ![tile-mask 3](eg/slide_1/patch_3.png)  |
+| ![tile-mask 1](eg/slide_1/patch_1.png)  | ![tile-mask 2](eg/slide_1/patch_2.png)  | ![tile-mask 3](eg/slide_1/patch_3.png)  |
 
 4. run the following command to train and visualize the training process:
 ```bash
@@ -73,6 +74,7 @@ def tile_contains_tumor(tile, seg_model, device, threshold_tumor=0.5):
         return True
     else:
         return False
+    
 def TileExporter():
     # your code here
     pass
