@@ -36,10 +36,11 @@ Suffix:
 - `jpeg` for tile
 - `png` for mask
 
-|            tile-mask pair a             |            tile-mask pair b             |            tile-mask pair c             |
-|:---------------------------------------:|:---------------------------------------:|:---------------------------------------:|
-| ![tile-mask 1](eg/slide_1/patch_1.jpeg) | ![tile-mask 2](eg/slide_1/patch_2.jpeg) | ![tile-mask 3](eg/slide_1/patch_3.jpeg) |
-| ![tile-mask 1](eg/slide_1/patch_1.png)  | ![tile-mask 2](eg/slide_1/patch_2.png)  | ![tile-mask 3](eg/slide_1/patch_3.png)  |
+
+|                  pair a                  |                  pair b                  |                  pair c                  |
+|:----------------------------------------:|:----------------------------------------:|:----------------------------------------:|
+| ![tile-mask 5](eg/slide_1/a.jpeg) a.jpeg | ![tile-mask 6](eg/slide_1/b.jpeg) b.jpeg | ![tile-mask 7](eg/slide_1/c.jpeg) c.jpeg |
+|  ![tile-mask 5](eg/slide_1/a.png) a.png  |  ![tile-mask 6](eg/slide_1/b.png) b.png  |  ![tile-mask 7](eg/slide_1/c.png) c.png  |
 
 4. run the following command to train and visualize the training process:
 ```bash
