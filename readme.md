@@ -1,13 +1,13 @@
 # WSI Segmenter
 
-> A simple tool for tile-level tumor-area segmentation or ROI segmentation. Works with QuPath (Version >= 0.4.2).
+> A tool for tile-level tumor-area segmentation or ROI segmentation. Works with QuPath (Version >= 0.4.2).
 > The model utilizes the [DeepLabV3](https://arxiv.org/abs/1706.05587) architecture with a pretrained ResNet backbone.
 
 ## Usage
 
 1. run `pip install -r requirements.txt` for installing dependencies.
 
-2. run `make_tile_mask_pairs.groovy` in QuPath to generate tile-mask pairs. See also [image.sc](https://forum.image.sc/t/exporting-annotations-as-rgb-image-tiles-or-cut-out-annotations-not-binary/77691)
+2. run `make_tile_mask_pairs.groovy` in QuPath to generate tile-mask pairs. Details in [image.sc](https://forum.image.sc/t/exporting-annotations-as-rgb-image-tiles-or-cut-out-annotations-not-binary/77691)
 
 Please ensure you have made the annotation in the QuPath and specified your parameters in the script.
 
