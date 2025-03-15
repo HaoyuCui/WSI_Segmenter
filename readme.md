@@ -3,7 +3,10 @@
 > A tool for tile-level tumor-area segmentation or ROI segmentation. Works with QuPath (Version >= 0.4.2).
 > The model utilizes the [DeepLabV3](https://arxiv.org/abs/1706.05587) architecture with a pretrained ResNet backbone.
 
-## Usage
+### Updates [03/2025]
+1. Currently the repository only supports training your own tumor segmentation model. We will open-source the weights trained on the public dataset (to avoid possible privacy violations) in two months, stay tuned!
+
+### Usage
 
 1. run `pip install -r requirements.txt` for installing dependencies.
 
