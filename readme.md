@@ -61,7 +61,11 @@ The prediction (up) and ground truth (down) will be shown and refreshed in the v
 
 ![visdom](eg/.src/visdom.png)
 
-5. you can also apply this with your patch extraction code.
+5. or use the pre-trained model to predict the mask of your own data. The model is trained on the [tsr-crc](https://zenodo.org/records/4024676) dataset. 
+
+    [[Google Drive](https://drive.google.com/file/d/1K_DaQlLcM26ZsIg3UNSfizpDBmo_MrBB/view?usp=sharing)]  Download the weights and place it in the `checkpoints` folder.
+
+6. you can also apply this with your patch extraction code.
 
 ```python
 import torch

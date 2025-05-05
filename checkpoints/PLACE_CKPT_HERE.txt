@@ -1,0 +1,2 @@
+Due to the GitHub's large file size limit, the checkpoint file is not included in the repository.
+You can download it from: https://drive.google.com/file/d/1K_DaQlLcM26ZsIg3UNSfizpDBmo_MrBB/view?usp=sharing
