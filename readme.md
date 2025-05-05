@@ -3,8 +3,11 @@
 > A tool for tile-level tumor-area segmentation or ROI segmentation. Works with QuPath (Version >= 0.4.2).
 > The model utilizes the [DeepLabV3](https://arxiv.org/abs/1706.05587) architecture with a pretrained ResNet backbone.
 
-### Updates [03/2025]
-1. Currently the repository only supports training your own tumor segmentation model. We will open-source the weights trained on the public dataset (to avoid possible privacy violations) in two months, stay tuned!
+### Updates 
+
+1. **[03/2025]** Currently the repository only supports training your own tumor segmentation model. We will open-source the weights trained on the public dataset (to avoid possible privacy violations) in two months, stay tuned!
+
+2. **[05/2025]** We have open-sourced the training code and weights based on the public dataset [tsr-crc](https://zenodo.org/records/4024676). Details can be found in `inference.py` and `eg\train_tsr-crc.py`. Please extract patches at **20x** or higher **(recommend 256x256)** for better performance.
 
 ### Usage
 
@@ -62,14 +65,16 @@ The prediction (up) and ground truth (down) will be shown and refreshed in the v
 
 ```python
 import torch
+import cv2
 from torchvision import transforms
+from torchvision.models.segmentation import deeplabv3_resnet50
 
-def tile_contains_tumor(tile, seg_model, device, threshold_tumor=0.5):
+def tile_contains_tumor(img, seg_model, device, threshold_tumor=0.5):
     # tile is Image object
-    tile = tile.convert("RGB")
-    tile = tile.resize((256, 256))
+    img = cv2.resize(img, (256, 256))  # we strongly recommend to extract patches at 20x or higher
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     # to tensor
-    tile = transforms.ToTensor()(tile).unsqueeze(0).to(device)
+    tile = transforms.ToTensor()(img).unsqueeze(0).to(device)
     with torch.no_grad():
         seg_model.eval()
         output = torch.sigmoid(seg_model(tile)['out']).mean()
@@ -86,8 +91,9 @@ def TileExporter():
 if __name__ == "__main__":
     # load the model
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    # load the saved model
-    model = torch.load(r'best.pt').to(device)
+    model = deeplabv3_resnet50(num_classes=1)
+    model.load_state_dict(torch.load('checkpoints/tsr_crc.pt'))
+    model = model.to(device)
     # extract patches 
     tiles = TileExporter()
     for tile in tiles:

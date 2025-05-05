@@ -6,6 +6,8 @@ import visdom
 import time
 import argparse
 
+import torchvision.utils as vutils
+
 from torch.utils.data import DataLoader
 from torchvision.models.segmentation import deeplabv3_resnet50
 from torchvision.models import ResNet50_Weights
@@ -98,12 +100,19 @@ if __name__ == '__main__':
 
             output_np = output.cpu().data.numpy().copy()
             y_np = mask.cpu().data.numpy().copy()
+            image_np = image.cpu().data.numpy().copy()
+
             if np.mod(index, 20) == 1:
                 epoch_pbar.set_description_str(f'epoch {epoch}, {index}/{len(dataloader_train)}, loss: {iter_loss:.4f}')
 
-            vis.close()
-            vis.images(output_np[:, :, :], opts=dict(title='pred'))
-            vis.images(y_np[:, :, :], opts=dict(title='label'))
+                # 转换为可视化格式
+                output_grid = vutils.make_grid(torch.tensor(output_np), normalize=True)
+                mask_grid = vutils.make_grid(torch.tensor(y_np), normalize=True)
+                image_grid = vutils.make_grid(torch.tensor(image_np), normalize=True)
+
+                vis.images(image_grid.numpy(), win='image', opts=dict(title='Input Image'))
+                vis.images(output_grid.numpy(), win='pred', opts=dict(title='Prediction'))
+                vis.images(mask_grid.numpy(), win='label', opts=dict(title='Ground Truth'))
 
         train_dice /= len(dataloader_train)
         train_iou /= len(dataloader_train)
@@ -111,7 +120,7 @@ if __name__ == '__main__':
         print('Train Dice: {:.4f}, Train IoU: {:.4f}'.format(train_dice, train_iou))
         print('Epoch loss = %f' % (epoch_loss / len(dataloader_train)))
 
-        torch.save(seg_model, f'checkpoints/epoch_{epoch}.pt')
+        torch.save(seg_model.state_dict(), f'checkpoints/epoch_{epoch}.pt')
         print(f'Saving to checkpoints/epoch_{epoch}.pt')
         print('===============================')
 
